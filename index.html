@@ -4,29 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Libro Ruta Libertadora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cardo&display=swap" rel="stylesheet">
+
     <style>
+        /* Tipografías antiguas */
+        @import url('https://fonts.googleapis.com/css2?family=Cardo&family=Great+Vibes&display=swap');
+
         * {
             box-sizing: border-box;
         }
 
         body {
-            background: #795548;
+            background: #5d4037;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: 'Georgia', serif;
+            font-family: 'Cardo', serif;
             height: 100vh;
         }
 
+        /* Contenedor del libro con perspectiva */
         .book-container {
             perspective: 2000px;
             position: relative;
-            width: 1000px;
-            height: 700px;
+            width: 700px;
+            height: 500px;
         }
 
+        /* Estructura del libro */
         .book {
             width: 100%;
             height: 100%;
@@ -34,32 +41,45 @@
             transform-style: preserve-3d;
         }
 
+        /* Cada pliego de dos páginas */
         .sheet {
             position: absolute;
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
-            transition: transform 1s;
+            transition: transform 1s ease-in-out;
         }
 
+        /* Animación al pasar la página */
         .sheet.flipped {
             transform: rotateY(-180deg);
         }
 
+        /* Estilo de cada página */
         .page {
             position: absolute;
             width: 50%;
             height: 100%;
-            background: #fff8e1;
+            background: url('pergamino.jpg') center/cover no-repeat;
             overflow: hidden;
             padding: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             backface-visibility: hidden;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+
+            /* Bordes tipo pergamino */
+            border: 8px solid #deb887;
+            border-image: url('https://i.imgur.com/4Yw9MaR.png') 30 stretch;
+
+            /* Sombras realistas */
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(0, 0, 0, 0.2);
+
+            font-family: 'Cardo', serif;
         }
 
+        /* Página izquierda y derecha */
         .page.left {
             left: 0;
             border-right: 1px solid #ccc;
@@ -72,29 +92,38 @@
             transform-origin: left;
         }
 
+        /* Títulos elegantes */
         .page h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #5c3317;
             margin-top: 0;
-            color: #4e342e;
+            margin-bottom: 10px;
         }
 
+        /* Párrafos */
         .page p {
             font-size: 1.1rem;
             line-height: 1.6;
             color: #3e2723;
         }
 
+        /* Imágenes en las páginas */
         .page img {
             max-width: 100%;
             border-radius: 5px;
             margin-top: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
         }
 
+        /* Portada estilo cuero */
         .cover {
-            background: url('https://rutanoticias.co/wp-content/uploads/2021/10/Ruta-libertadora-de-Bolivar-Ruta-Noticias.jpg') center/cover no-repeat;
+            background: url('portada.jpg') center/cover no-repeat;;
             color: white;
             text-align: center;
             font-size: 2rem;
             padding: 0;
+            font-family: 'Great Vibes', cursive;
         }
 
         .cover h1 {
@@ -103,15 +132,18 @@
             border-radius: 10px;
         }
 
+        /* Contraportada */
         .back-cover {
-            background: #4e342e;
+            background: #3e2723;
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 1.5rem;
+            font-family: 'Cardo', serif;
         }
 
+        /* Controles de navegación */
         .controls {
             margin-top: 20px;
         }
@@ -122,7 +154,7 @@
             margin: 0 10px;
             cursor: pointer;
             border: none;
-            background: #5d4037;
+            background: #6d4c41;
             color: white;
             border-radius: 5px;
             transition: background 0.3s;
@@ -132,6 +164,7 @@
             background: #3e2723;
         }
 
+        /* Responsivo */
         @media (max-width: 768px) {
             .book-container {
                 width: 95vw;
@@ -143,7 +176,7 @@
             }
 
             .page h2 {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
             }
 
             .page p {
